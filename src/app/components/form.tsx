@@ -49,6 +49,7 @@ export default function MyForm() {
         value={inputs.name}
         onChange={handleChange}
         className="text-zinc-950"
+        required
       />
       <label htmlFor="email">email</label>
       <input
@@ -58,6 +59,7 @@ export default function MyForm() {
         value={inputs.email}
         onChange={handleChange}
         className="text-zinc-950"
+        required
       />
       <label htmlFor="message">message</label>
       <textarea
@@ -68,6 +70,7 @@ export default function MyForm() {
         value={inputs.message}
         className="text-zinc-950"
         onChange={handleTextArea}
+        required
       ></textarea>
       <button type="submit" className="border-2 p-2 hover:opacity-75">
         Submit
