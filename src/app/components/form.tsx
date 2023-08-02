@@ -52,7 +52,7 @@ export default function MyForm() {
       />
       <label htmlFor="email">email</label>
       <input
-        type="text"
+        type="email"
         id="email"
         name="email"
         value={inputs.email}
