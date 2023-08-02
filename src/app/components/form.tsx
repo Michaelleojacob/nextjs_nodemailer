@@ -20,11 +20,22 @@ export default function MyForm() {
     setInputs((prev) => ({ ...prev, message: e.target.value }));
   };
 
-  const handlesubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handlesubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(inputs.name);
     console.log(inputs.email);
     console.log(inputs.message);
+    const rawFetch = await fetch("/api/nodemailer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(inputs),
+    });
+    // console.log(rawFetch.status ? rawFetch.status : null);
+    const res = await rawFetch.json();
+    console.log(res);
   };
 
   return (
@@ -32,7 +43,7 @@ export default function MyForm() {
       action="/send-data-here"
       method="post"
       onSubmit={handlesubmit}
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-4 items-start m-2"
     >
       <label htmlFor="name">name</label>
       <input
@@ -62,7 +73,9 @@ export default function MyForm() {
         className="text-zinc-950"
         onChange={handleTextArea}
       ></textarea>
-      <button type="submit">Submit</button>
+      <button type="submit" className="border-2 p-2 hover:opacity-75">
+        Submit
+      </button>
     </form>
   );
 }
