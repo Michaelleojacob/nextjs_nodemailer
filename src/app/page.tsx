@@ -4,11 +4,11 @@ import { useEffect } from "react";
 export default function Home() {
   const MakeFetch = async () => {
     try {
-      const rawRes = await fetch("http://localhost:3000/pages/api/test");
-      console.log(rawRes);
-      rawRes.status ? console.log(rawRes.status) : null;
-      const res = await rawRes.json();
-      console.log(res);
+      const raw1 = await fetch("/api/test");
+      // const raw2 = await fetch("http://localhost:3000/api/test");
+      // const raw3 = await fetch("api/test");
+      const res1 = await raw1.json();
+      console.log(res1);
     } catch (err) {
       console.log(err);
     }
