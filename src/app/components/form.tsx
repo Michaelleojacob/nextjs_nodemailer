@@ -22,9 +22,6 @@ export default function MyForm() {
 
   const handlesubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(inputs.name);
-    console.log(inputs.email);
-    console.log(inputs.message);
     const rawFetch = await fetch("/api/nodemailer", {
       method: "POST",
       headers: {
@@ -35,7 +32,6 @@ export default function MyForm() {
     });
     // console.log(rawFetch.status ? rawFetch.status : null);
     const res = await rawFetch.json();
-    console.log(res);
   };
 
   return (
