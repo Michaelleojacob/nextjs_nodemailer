@@ -12,7 +12,14 @@ migs:~/nextjs$ npx create-next-app@latest
 Creating a new Next.js app in /home/migs/nextjs/nodemailer.
 ```
 
-Simply create a directory inside `src/app/` called api -> `src/app/api/`
+Simply create a directory inside `src/` called api -> `src/pages/api` ON THE SAME LEVEL as `src/app`
+
+```
+-./
+  -src
+    -app
+    -pages
+```
 
 inside of `api/` I can add functions for handling http requests as if I were on node:
 
@@ -24,10 +31,13 @@ import { useEffect } from "react";
 
 export default function Home() {
   const MakeFetch = async () => {
-    const rawRes = await fetch("/api/test");
-    console.log(rawRes);
-    // const res = await rawRes.json();
-    // console.log(res);
+    try {
+      const raw1 = await fetch("/api/test");
+      const res1 = await raw1.json();
+      console.log(res1);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -36,7 +46,7 @@ export default function Home() {
 
   return (
     <>
-      <div>hi</div>
+      <button onClick={MakeFetch}>refetch</button>
     </>
   );
 }
@@ -47,10 +57,10 @@ node / serverless function on nextjs:
 ```js
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  res.status(200).json({ name: "miggy" });
-}
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
+  // console.log(req);
+  return res.status(200).json({ name: "miggy" });
+};
+
+export default handler;
 ```
