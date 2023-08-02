@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import MyForm from "./components/form";
 
 export default function Home() {
   const MakeFetch = async () => {
@@ -22,6 +23,7 @@ export default function Home() {
     <>
       <div>hi</div>
       <button onClick={MakeFetch}>refetch</button>
+      <MyForm />
     </>
   );
 }
